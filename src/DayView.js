@@ -211,7 +211,8 @@ export default class DayView extends React.PureComponent {
   render() {
     const { styles } = this.props;
     return (
-      <View
+      <ScrollView
+        scrollEnabled={false}
         ref={ref => (this._scrollView = ref)}
         style={[
           styles.contentStyle,
@@ -221,7 +222,7 @@ export default class DayView extends React.PureComponent {
         {this._renderLines()}
         {this._renderEvents()}
         {this._renderRedLine()}
-      </View>
+      </ScrollView>
     );
   }
 }

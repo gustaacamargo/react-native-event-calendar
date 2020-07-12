@@ -1,6 +1,6 @@
 {
-  "name": "react-native-events-calendar",
-  "version": "1.0.8",
+  "name": "react-native-events-calendar-custom",
+  "version": "1.0.0",
   "description": "show calendar events by date",
   "main": "./src/EventCalendar.js",
   "scripts": {
@@ -17,7 +17,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/joshyhargreaves/react-native-event-calendar.git"
+    "url": "git+https://github.com/gustaacamargo/react-native-event-calendar"
   },
   "keywords": [
     "react-native",

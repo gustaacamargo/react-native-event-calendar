@@ -1,5 +1,5 @@
 // @flow
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Image } from 'react-native';
 import populateEvents from './Packer';
 import React from 'react';
 import moment from 'moment';
@@ -190,11 +190,12 @@ export default class DayView extends React.PureComponent {
               </View>
           )}
           <View style={{ position: 'absolute', right: 1, bottom: 1 }}>
-            {(event.done) ? (
-                <Text>done</Text>
-              ) : (
-                <Text>notdone</Text>
+            {(event.done == true) && (
+                <Image style={{ width: 25, height: 25, marginRight: 3 }} source={require('./checked.png')}/>
             )}
+            {(event.done == false && typeof event.done != 'undefined' ) && (
+              <Image style={{ width: 20, height: 20, marginRight: 3 }} source={require('./close.png')}/>
+            )} 
           </View>
         </TouchableOpacity>
       );

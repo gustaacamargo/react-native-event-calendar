@@ -1,6 +1,6 @@
 {
   "name": "react-native-events-calendar-custom",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "show calendar events by date",
   "main": "./src/EventCalendar.js",
   "scripts": {

@@ -205,7 +205,7 @@ export default class DayView extends React.PureComponent {
     return (
       <View
         ref={ref => (this._scrollView = ref)}
-        contentContainerStyle={[
+        style={[
           styles.contentStyle,
           { width: this.props.width },
         ]}

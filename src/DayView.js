@@ -189,7 +189,7 @@ export default class DayView extends React.PureComponent {
               ) : null}
               </View>
           )}
-          <View style={{ position: 'absolute', right: 1, bottom: 1 }}>
+          <View style={{ position: 'absolute', left: 3, bottom: 2 }}>
             {(event.done == true) && (
                 <Image style={{ width: 25, height: 25, marginRight: 3 }} source={require('./checked.png')}/>
             )}

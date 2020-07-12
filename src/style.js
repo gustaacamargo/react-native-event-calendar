@@ -102,7 +102,6 @@ export default function styleConstructor(theme = {}, calendarHeight) {
       left: 15,
       color: 'rgb(170,170,170)',
       fontSize: 10,
-      fontFamily: Platform.OS === 'ios' ? 'Helvetica Neue' : 'Roboto',
       fontWeight: '500',
       ...theme.timeLabel,
     },

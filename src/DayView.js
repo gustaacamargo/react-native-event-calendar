@@ -164,7 +164,7 @@ export default class DayView extends React.PureComponent {
           onPress={() =>
             this._onEventTapped(this.props.events[event.index])
           }
-          key={i} style={[styles.event, style, event.color && eventColor, { borderLeftColor: event.leftColor, borderLeftWidth: 3, flexDirection: 'row' }]}
+          key={i} style={[styles.event, style, event.color && eventColor, { borderWidth: 3, borderColor: event.leftColor, borderRightWidth: 0, borderTopWidth: 0, borderBottomWidth: 0, flexDirection: 'row' }]}
         >
           {this.props.renderEvent ? (
             this.props.renderEvent(event)
@@ -211,9 +211,8 @@ export default class DayView extends React.PureComponent {
   render() {
     const { styles } = this.props;
     return (
-      <ScrollView
-        scrollEnabled={false}
-        ref={ref => (this._scrollView = ref)}
+      <View
+        //ref={ref => (this._scrollView = ref)}
         style={[
           styles.contentStyle,
           { width: this.props.width },
@@ -222,7 +221,7 @@ export default class DayView extends React.PureComponent {
         {this._renderLines()}
         {this._renderEvents()}
         {this._renderRedLine()}
-      </ScrollView>
+      </View>
     );
   }
 }

@@ -164,7 +164,7 @@ export default class DayView extends React.PureComponent {
           onPress={() =>
             this._onEventTapped(this.props.events[event.index])
           }
-          key={i} style={[styles.event, style, event.color && eventColor]}
+          key={i} style={[styles.event, style, event.color && eventColor, { borderLeftColor: event.leftColor, borderLeftWidth: 3 }]}
         >
           {this.props.renderEvent ? (
             this.props.renderEvent(event)

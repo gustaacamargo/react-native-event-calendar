@@ -57,7 +57,7 @@ export default function styleConstructor(theme = {}, calendarHeight) {
       minHeight: 25,
       flex: 1,
       paddingTop: 5,
-      paddingBottom: 0,
+      paddingBottom: 40,
       flexDirection: 'column',
       alignItems: 'flex-start',
       overflow: 'hidden',
@@ -94,7 +94,6 @@ export default function styleConstructor(theme = {}, calendarHeight) {
       height: 1,
       position: 'absolute',
       left: leftMargin,
-      backgroundColor: 'red',
       ...theme.lineNow,
     },
     timeLabel: {

@@ -169,8 +169,8 @@ export default class EventCalendar extends React.Component {
       <View style={[this.styles.container, { width }]}>
         <VirtualizedList
           ref="calendar"
-          windowSize={2}
-          initialNumToRender={2}
+          windowSize={21}
+          initialNumToRender={1}
           initialScrollIndex={this.props.size}
           data={events}
           getItemCount={() => this.props.size * 2}
@@ -178,7 +178,6 @@ export default class EventCalendar extends React.Component {
           keyExtractor={(item, index) => index.toString()}
           getItemLayout={this._getItemLayout.bind(this)}
           horizontal
-          pagingEnabled
           scrollEnabled={false}
           renderItem={this._renderItem.bind(this)}
           style={{ width: width }}

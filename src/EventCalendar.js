@@ -179,6 +179,7 @@ export default class EventCalendar extends React.Component {
           getItemLayout={this._getItemLayout.bind(this)}
           horizontal
           pagingEnabled
+          removeClippedSubviews={true}
           scrollEnabled={false}
           renderItem={this._renderItem.bind(this)}
           style={{ width: width }}

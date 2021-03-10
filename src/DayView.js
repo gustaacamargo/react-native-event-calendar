@@ -158,47 +158,53 @@ export default class DayView extends React.PureComponent {
       // However it would make sense to overflow the title to a new line if needed
       const numberOfLines = Math.floor(event.height / TEXT_LINE_HEIGHT);
       const formatTime = this.props.format24h ? 'HH:mm' : 'hh:mm A';
-      return (
-        <TouchableOpacity
-          activeOpacity={0.5}
-          onPress={() =>
-            this._onEventTapped(this.props.events[event.index])
-          }
-          key={i} style={[styles.event, style, event.color && eventColor, { borderWidth: 3, borderColor: event.leftColor, borderRightWidth: 0, borderTopWidth: 0, borderBottomWidth: 0, flexDirection: 'row' }]}
-        >
-          {this.props.renderEvent ? (
-            this.props.renderEvent(event)
-          ) : (
-            <View>
-              <Text numberOfLines={1} style={styles.eventTitle}>
-                {event.title || 'Event'}
-              </Text>
-              {numberOfLines > 1 ? (
-                <Text
-                  numberOfLines={numberOfLines - 1}
-                  style={[styles.eventSummary]}
-                >
-                  {event.summary || ' '}
-                </Text>
-              ) : null}
-              {numberOfLines > 2 ? (
-                <Text style={styles.eventTimes} numberOfLines={1}>
-                  {moment(event.start).format(formatTime)} -{' '}
-                  {moment(event.end).format(formatTime)}
-                </Text>
-              ) : null}
-              </View>
-          )}
-          <View style={{ position: 'absolute', left: 3, bottom: 2 }}>
-            {(event.done == true) && (
-                <Image style={{ width: 25, height: 25, marginRight: 3 }} source={require('./checked.png')}/>
-            )}
-            {(event.done == false && typeof event.done != 'undefined' ) && (
-              <Image style={{ width: 20, height: 20, marginRight: 3 }} source={require('./close.png')}/>
-            )} 
+      return (<>
+        {this.props.withNothing ? (
+          <View style={{flexDirection: 'row', alignItems: 'center', marginVertical: 10}}>
+            <Text style={{ fontWeight: 'bold' }}>Sem atividades para {`${moment(event.initial).format("MMMM")} de ${moment(event.initial).format("YYYY")}`}</Text>
           </View>
-        </TouchableOpacity>
-      );
+        ) : (
+          <TouchableOpacity
+            activeOpacity={0.5}
+            onPress={() =>
+              this._onEventTapped(this.props.events[event.index])
+            }
+            key={i} style={[styles.event, style, event.color && eventColor, { borderWidth: 3, borderColor: event.leftColor, borderRightWidth: 0, borderTopWidth: 0, borderBottomWidth: 0, flexDirection: 'row' }]}
+          >
+            {this.props.renderEvent ? (
+              this.props.renderEvent(event)
+            ) : (
+              <View>
+                <Text numberOfLines={1} style={styles.eventTitle}>
+                  {event.title || 'Event'}
+                </Text>
+                {numberOfLines > 1 ? (
+                  <Text
+                    numberOfLines={numberOfLines - 1}
+                    style={[styles.eventSummary]}
+                  >
+                    {event.summary || ' '}
+                  </Text>
+                ) : null}
+                {numberOfLines > 2 ? (
+                  <Text style={styles.eventTimes} numberOfLines={1}>
+                    {moment(event.start).format(formatTime)} -{' '}
+                    {moment(event.end).format(formatTime)}
+                  </Text>
+                ) : null}
+                </View>
+            )}
+            <View style={{ position: 'absolute', left: 3, bottom: 2 }}>
+              {(event.done == true) && (
+                  <Image style={{ width: 25, height: 25, marginRight: 3 }} source={require('./checked.png')}/>
+              )}
+              {(event.done == false && typeof event.done != 'undefined' ) && (
+                <Image style={{ width: 20, height: 20, marginRight: 3 }} source={require('./close.png')}/>
+              )} 
+            </View>
+          </TouchableOpacity>
+        )}
+      </>);
     });
 
     return (
@@ -214,11 +220,11 @@ export default class DayView extends React.PureComponent {
       <View
         //ref={ref => (this._scrollView = ref)}
         style={[
-          styles.contentStyle,
+          !this.props.withNothing && styles.contentStyle,
           { width: this.props.width },
         ]}
       >
-        {this._renderLines()}
+        {!this.props.withNothing && this._renderLines()}
         {this._renderEvents()}
         {this._renderRedLine()}
       </View>

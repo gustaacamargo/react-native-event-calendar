@@ -100,6 +100,7 @@ export default class EventCalendar extends React.Component {
           index={index}
           format24h={format24h}
           formatHeader={this.props.formatHeader}
+          withNothing={this.props.withNothing}
           headerStyle={this.props.headerStyle}
           renderEvent={this.props.renderEvent}
           eventTapped={this.props.eventTapped}

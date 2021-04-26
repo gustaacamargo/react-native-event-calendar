@@ -161,7 +161,7 @@ export default class DayView extends React.PureComponent {
       return (<>
         {this.props.withNothing ? (
           <View style={{flexDirection: 'row', alignItems: 'center', marginVertical: 10}}>
-            <Text style={{ fontWeight: 'bold' }}>Sem atividades para {`${moment(event.initial).format("MMMM")} de ${moment(event.initial).format("YYYY")}`}</Text>
+            <Text ellipsizeMode="tail" numberOfLines={1} style={{ fontWeight: 'bold' }}>Sem atividades para esse mês</Text>
           </View>
         ) : (
           <TouchableOpacity

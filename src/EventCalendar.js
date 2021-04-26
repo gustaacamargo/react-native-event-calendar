@@ -65,7 +65,7 @@ export default class EventCalendar extends React.Component {
     });
   }
 
-  _renderItem({ index, item }) {
+  _renderItem() {
     const {
       width,
       format24h,
@@ -74,37 +74,20 @@ export default class EventCalendar extends React.Component {
       start = 0,
       end = 24,
       formatHeader,
+      events,
       upperCaseHeader = false,
     } = this.props;
-    const date = moment(initDate).add(index - this.props.size, 'days');
-
-    const leftIcon = this.props.headerIconLeft ? (
-        this.props.headerIconLeft
-    ) : (
-        <Image source={require('./back.png')} style={this.styles.arrow} />
-    );
-    const rightIcon = this.props.headerIconRight ? (
-        this.props.headerIconRight
-    ) : (
-        <Image source={require('./forward.png')} style={this.styles.arrow} />
-    );
-
-    let headerText = upperCaseHeader
-        ? date.format(formatHeader || 'DD MMMM YYYY').toUpperCase()
-        : date.format(formatHeader || 'DD MMMM YYYY');
 
     return (
       <View style={[this.styles.container, { width }]}>
         <DayView
-          date={date}
-          index={index}
           format24h={format24h}
           formatHeader={this.props.formatHeader}
           withNothing={this.props.withNothing}
           headerStyle={this.props.headerStyle}
           renderEvent={this.props.renderEvent}
           eventTapped={this.props.eventTapped}
-          events={item}
+          events={events}
           width={width}
           styles={this.styles}
           scrollToFirst={scrollToFirst}
@@ -158,45 +141,13 @@ export default class EventCalendar extends React.Component {
     }
   };
 
-  render() {
+  render () {
     const {
       width,
-      virtualizedListProps,
-      events,
-      initDate,
     } = this.props;
-
     return (
       <View style={[this.styles.container, { width }]}>
-        <VirtualizedList
-          ref="calendar"
-          windowSize={1}
-          initialNumToRender={1}
-          initialScrollIndex={this.props.size}
-          data={events}
-          getItemCount={() => this.props.size * 2}
-          getItem={this._getItem.bind(this)}
-          keyExtractor={(item, index) => index.toString()}
-          getItemLayout={this._getItemLayout.bind(this)}
-          horizontal
-          pagingEnabled
-          removeClippedSubviews={true}
-          scrollEnabled={false}
-          renderItem={this._renderItem.bind(this)}
-          style={{ width: width }}
-          onMomentumScrollEnd={event => {
-            const index = parseInt(event.nativeEvent.contentOffset.x / width);
-            const date = moment(this.props.initDate).add(
-              index - this.props.size,
-              'days'
-            );
-            if (this.props.dateChanged) {
-              this.props.dateChanged(date.format('YYYY-MM-DD'));
-            }
-            this.setState({ index, date });
-          }}
-          {...virtualizedListProps}
-        />
+        {this._renderItem()}
       </View>
     );
   }
